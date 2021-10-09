@@ -1,2 +1,2 @@
-# haraka-plugin-action-mailbox
+# haraka-plugin-queue-action-mailbox
 A Haraka plugin for relaying email to a Rails application via Action Mailbox. 
