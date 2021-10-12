@@ -20,8 +20,8 @@ To use make sure to add a queue.rails.json config file in the config folder with
 "ACTION_MAILBOX_PASSWORD": "my_password",
 "ACTION_MAILBOX_HOST": "my_host.com",
 "ACTION_MAILBOX_PATH": "/email",
-"ACTION_MAILBOX_PORT": 25,
-"APP_VERSION": 1337
+"ACTION_MAILBOX_PORT": 1337,
+"APP_VERSION": "your_custom_version"
 }
 ```
 
