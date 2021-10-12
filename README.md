@@ -1,7 +1,3 @@
-
-
-![alt text](https://en.gravatar.com/userimage/466950/319008f37c749fae53ef6a7b071afa83.png)
-
 # haraka-plugin-queue-rails
 A Haraka plugin for relaying email to a Rails application via Action Mailbox.
 
@@ -15,13 +11,9 @@ npm install @mailprotector/haraka-plugin-queue-rails --save
 To use make sure to add a queue.rails.json config file in the config folder with the following settings:
 ```json
 {
-"APP_NAME": "your_apps_name",
-"ACTION_MAILBOX_USERNAME": "my_user_name",
 "ACTION_MAILBOX_PASSWORD": "my_password",
-"ACTION_MAILBOX_HOST": "https://my_host.com",
-"ACTION_MAILBOX_PATH": "/email",
-"ACTION_MAILBOX_PORT": 1337,
-"APP_VERSION": "your_custom_version"
+"ACTION_MAILBOX_URL": "https://my_host.com/email:8080",
+"USER_AGENT": "your_custom_agent"
 }
 ```
 
@@ -32,5 +24,5 @@ queue.rails
 
 
 ##
-
+![alt text](https://i1.wp.com/mailprotector.com/wp-content/uploads/2020/03/cropped-logo-2x.png)
 [About Mailprotector](https://mailprotector.com/about-mailprotector)

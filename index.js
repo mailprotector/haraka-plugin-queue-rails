@@ -1,5 +1,5 @@
 (() => {
-  const buildPluginFunction = https => {
+  const buildPluginFunction = axios => {
     return function(next, connection) {
       const startTime = Date.now();
 
@@ -14,7 +14,7 @@
       const addCustomHeaders = customHeader => {
         logDebug('[ADD_CUSTOM_HEADERS]', plugin);
         try {
-          transaction.add_header(`X-${plugin.cfg.APP_NAME}`, JSON.stringify(customHeader))
+          transaction.add_header(`X-${plugin.cfg.USER_AGENT}`, JSON.stringify(customHeader))
         } catch (err) {
           handleError(`[ADD_CUSTOM_HEADERS] ${err.message}`);
         }
@@ -30,53 +30,46 @@
         done(DENYSOFT);
       };
 
-      const handleApiError = status => {
-        let errorMessage = 'Unknown response from server';
+      const handleApiError = err => {
+        if (err.response != undefined && err.response.status != undefined) {
+          let errorMessage = 'Unknown response from server';
 
-        if (status == 401) {
-          errorMessage = 'Invalid credentials for ingress';
+          if (err.response.status == 401) {
+            errorMessage = 'Invalid credentials for ingress';
+          }
+
+          if (err.response.status == 400) {
+            errorMessage = 'Error relaying to ingress';
+          }
+
+          handleError(errorMessage);
+        } else {
+          handleError(err.message);
         }
-
-        if (status == 400) {
-          errorMessage = 'Error relaying to ingress';
-        }
-
-        handleError(errorMessage);
       };
 
       const run = () => {
         try {
           logDebug('[RUN][STARTED]', plugin);
 
-          const authString = `${plugin.cfg.ACTION_MAILBOX_USERNAME}:${plugin.cfg.ACTION_MAILBOX_PASSWORD}`;
+          const authString = `actionmailbox:${plugin.cfg.ACTION_MAILBOX_PASSWORD}`;
           const authBase64 = new Buffer.from(authString).toString('base64');
 
           const options = {
-            host: plugin.cfg.ACTION_MAILBOX_HOST,
-            port: plugin.cfg.ACTION_MAILBOX_PORT,
-            path: plugin.cfg.ACTION_MAILBOX_PATH,
-            method: 'POST',
             headers: {
               'Content-Type': 'messsage/rfc822',
-              'User-Agent': `Frontline relayer v${plugin.cfg.APP_VERSION}`,
+              'User-Agent': `Frontline relayer v${plugin.cfg.USER_AGENT}`,
               'Authorization': `Basic ${authBase64}`
             }
           };
 
-          const request = https.request(options, response => {
-            if (response.statusCode > 299 || response.statusCode == undefined) {
-              handleApiError(response.statusCode);
-            } else {
-              logDebug('[HTTPS_REQUEST][COMPLETE]', plugin);
+          axios.post(plugin.cfg.ACTION_MAILBOX_URL, transaction.message_stream, options).then(response => {
+            if (response.status <= 299) {
               done(OK);
+            } else {
+              handleApiError({ response });
             }
-          });
-
-          request.on('error', err => {
-            handleError(`[REQUEST][ERROR] ${err.message}`)
-          });
-
-          transaction.message_stream.pipe(request);
+          }).catch(err => handleApiError(err));
         } catch (err) {
           handleError(`[RUN][ERROR] ${err.message}`);
         }
@@ -105,6 +98,6 @@
     this.load_config();
   };
 
-  exports.queue_rails = buildPluginFunction(require('https'));
+  exports.queue_rails = buildPluginFunction(require('axios'));
 
 })();

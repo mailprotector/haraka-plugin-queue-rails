@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/mailprotector/haraka-plugin-queue-action-mailbox/issues"
   },
-  "homepage": "https://github.com/mailprotector/haraka-plugin-queue-action-mailbox#readme"
+  "homepage": "https://github.com/mailprotector/haraka-plugin-queue-action-mailbox#readme",
+  "dependencies": {
+    "axios": "^0.23.0"
+  }
 }
