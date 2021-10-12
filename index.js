@@ -61,13 +61,10 @@
             let rawData = '';
 
             response.on('data', (chunk) => {
-              console.log('CHUNK');
-              console.log(chunk);
               rawData += chunk;
             });
 
             response.on('end', () => {
-              console.log(rawData);
               rawData = JSON.parse(rawData);
 
               if (response.statusCode > 299) {
@@ -84,7 +81,6 @@
 
           transaction.message_stream.pipe(request);
         } catch (err) {
-          console.log(err);
           handleError(`[RUN][ERROR] ${err.message}`);
         }
       };
