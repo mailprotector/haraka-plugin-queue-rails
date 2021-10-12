@@ -1,12 +1,18 @@
 (() => {
   const buildPluginFunction = https => {
     return function(next, connection) {
+      const startTime = Date.now();
+
+      const logDebug = msg => {
+        logdebug(msg + ` ${Date.now() - startTime}/ms`, plugin);
+      }
+
       const plugin = this;
 
       const { transaction, remote, hello, logdebug, logerror } = connection;
 
       const addCustomHeaders = customHeader => {
-        logdebug('[ADD_CUSTOM_HEADERS]', plugin);
+        logDebug('[ADD_CUSTOM_HEADERS]', plugin);
         try {
           transaction.add_header(`X-${plugin.cfg.APP_NAME}`, JSON.stringify(customHeader))
         } catch (err) {
@@ -15,7 +21,7 @@
       };
 
       const done = (status, reason) => {
-        logdebug('[DONE]', plugin);
+        logDebug('[DONE]', plugin);
         next(status, reason);
       };
 
@@ -25,7 +31,7 @@
       };
 
       const handleApiError = status => {
-        let errorMessage;
+        let errorMessage = 'Unknown response from server';
 
         if (status == 401) {
           errorMessage = 'Invalid credentials for ingress';
@@ -40,7 +46,7 @@
 
       const run = () => {
         try {
-          logdebug('[RUN][STARTED]', plugin);
+          logDebug('[RUN][STARTED]', plugin);
 
           const authString = `${plugin.cfg.ACTION_MAILBOX_USERNAME}:${plugin.cfg.ACTION_MAILBOX_PASSWORD}`;
           const authBase64 = new Buffer.from(authString).toString('base64');
@@ -58,10 +64,11 @@
           };
 
           const request = https.request(options, response => {
-            if (response.statusCode > 299) {
+            if (response.statusCode > 299 || response.statusCode == undefined) {
               handleApiError(response.statusCode);
             } else {
-              next(OK);
+              logDebug('[HTTPS_REQUEST][COMPLETE]', plugin);
+              done(OK);
             }
           });
 
