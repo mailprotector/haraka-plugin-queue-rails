@@ -25,6 +25,11 @@ To use make sure to add a queue.rails.json config file in the config folder with
 }
 ```
 
+Add to config file in config folder
+```text
+queue.rails
+```
+
 
 ##
 
