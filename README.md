@@ -18,7 +18,7 @@ To use make sure to add a queue.rails.json config file in the config folder with
 "APP_NAME": "your_apps_name",
 "ACTION_MAILBOX_USERNAME": "my_user_name",
 "ACTION_MAILBOX_PASSWORD": "my_password",
-"ACTION_MAILBOX_HOST": "my_host.com",
+"ACTION_MAILBOX_HOST": "https://my_host.com",
 "ACTION_MAILBOX_PATH": "/email",
 "ACTION_MAILBOX_PORT": 1337,
 "APP_VERSION": "your_custom_version"
