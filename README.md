@@ -1,4 +1,5 @@
 
+
 ![alt text](https://en.gravatar.com/userimage/466950/319008f37c749fae53ef6a7b071afa83.png)
 
 # haraka-plugin-queue-rails
@@ -15,12 +16,12 @@ To use make sure to add a queue.rails.json config file in the config folder with
 ```json
 {
 	"APP_NAME": "APP_NAME",
-  "ACTION_MAILBOX_USERNAME": "my_user_name",
-  "ACTION_MAILBOX_PASSWORD": "my_password",
-  "ACTION_MAILBOX_HOST": "my_host.com",
-  "ACTION_MAILBOX_PATH": "/email",
-  "ACTION_MAILBOX_PORT": 25,
-  "APP_VERSION": 1337
+	"ACTION_MAILBOX_USERNAME": "my_user_name",
+    "ACTION_MAILBOX_PASSWORD": "my_password",
+    "ACTION_MAILBOX_HOST": "my_host.com",
+    "ACTION_MAILBOX_PATH": "/email",
+    "ACTION_MAILBOX_PORT": 25,
+    "APP_VERSION": 1337
 }
 ```
 
