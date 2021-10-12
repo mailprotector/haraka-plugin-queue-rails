@@ -58,21 +58,11 @@
           };
 
           const request = https.request(options, response => {
-            let rawData = '';
-
-            response.on('data', (chunk) => {
-              rawData += chunk;
-            });
-
-            response.on('end', () => {
-              rawData = JSON.parse(rawData);
-
-              if (response.statusCode > 299) {
-                handleApiError(response.statusCode);
-              } else {
-                next(OK);
-              }
-            });
+            if (response.statusCode > 299) {
+              handleApiError(response.statusCode);
+            } else {
+              next(OK);
+            }
           });
 
           request.on('error', err => {
