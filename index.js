@@ -100,7 +100,7 @@
   exports.queue_rails_test = buildPluginFunction;
 
   exports.load_config = function() {
-    this.cfg = this.config.get('queue.rails.json', this.load_config).main;
+    this.cfg = this.config.get('queue.rails.json', this.load_config);
   };
 
   exports.register = function() {
