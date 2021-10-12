@@ -79,9 +79,8 @@
           });
 
           request.on('error', err => {
-            console.log('REQUEST ERROR');
-            console.log(err);
-          })
+            handleError(`[REQUEST][ERROR] ${err.message}`)
+          });
 
           transaction.message_stream.pipe(request);
         } catch (err) {
