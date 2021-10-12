@@ -1,5 +1,5 @@
 {
-  "name": "haraka-plugin-queue-action-mailbox",
+  "name": "@mailprotector/haraka-plugin-queue-action-mailbox",
   "version": "1.0.0",
   "description": "A Haraka plugin for relaying email to a Rails application via Action Mailbox.",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/virtualconnect/haraka-plugin-queue-action-mailbox.git"
+    "url": "git+https://github.com/mailprotector/haraka-plugin-queue-action-mailbox.git"
   },
   "keywords": [
     "Haraka",
@@ -21,7 +21,7 @@
   "author": "Mailprotector Team <npm@mailprotector.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/virtualconnect/haraka-plugin-queue-action-mailbox/issues"
+    "url": "https://github.com/mailprotector/haraka-plugin-queue-action-mailbox/issues"
   },
-  "homepage": "https://github.com/virtualconnect/haraka-plugin-queue-action-mailbox#readme"
+  "homepage": "https://github.com/mailprotector/haraka-plugin-queue-action-mailbox#readme"
 }
