@@ -12,7 +12,7 @@ Add `queue.rails.json` in the config folder with the following settings:
 ```json
 {
   "ACTION_MAILBOX_PASSWORD": "my_password",
-  "ACTION_MAILBOX_URL": "https://my_host.com:8080/email",
+  "ACTION_MAILBOX_URL": "http://localhost:3000/rails/action_mailbox/relay/inbound_emails",
   "USER_AGENT": "awesome-app",
   "ENVELOPE_HEADER_NAME": "X-HARAKA-ENVELOPE"
 }

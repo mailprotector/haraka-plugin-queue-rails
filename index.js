@@ -42,6 +42,10 @@
             errorMessage = 'Invalid credentials for ingress';
           }
 
+          if (err.response.status == 403) {
+            errorMessage = 'Forbidden to access ingress';
+          }
+
           handleError(errorMessage, errorMessage);
         } else {
           handleError(err.message);
