@@ -11,9 +11,9 @@ npm install @mailprotector/haraka-plugin-queue-rails --save
 To use make sure to add a queue.rails.json config file in the config folder with the following settings:
 ```json
 {
-"ACTION_MAILBOX_PASSWORD": "my_password",
-"ACTION_MAILBOX_URL": "https://my_host.com:8080/email",
-"USER_AGENT": "awesome-app"
+  "ACTION_MAILBOX_PASSWORD": "my_password",
+  "ACTION_MAILBOX_URL": "https://my_host.com:8080/email",
+  "USER_AGENT": "awesome-app"
 }
 ```
 
