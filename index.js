@@ -1,48 +1,38 @@
 (() => {
   const buildPluginFunction = axios => {
     return function(next, connection) {
-      const startTime = Date.now();
-
-      const logInfo = msg => {
-        loginfo(msg + ` ${Date.now() - startTime}/ms`, plugin);
-      }
-
       const plugin = this;
 
-      const { transaction, remote, hello, loginfo, logerror } = connection;
+      const { transaction, remote, hello, logdebug, logerror } = connection;
 
       const addCustomHeaders = customHeader => {
-        logInfo('[ADD_CUSTOM_HEADERS]', plugin);
+        logdebug('[ADD_CUSTOM_HEADERS]', plugin);
         try {
-          transaction.add_header(`X-${plugin.cfg.USER_AGENT}`, JSON.stringify(customHeader))
+          transaction.add_header(plugin.cfg.ENVELOPE_HEADER_NAME, JSON.stringify(customHeader))
         } catch (err) {
           handleError(`[ADD_CUSTOM_HEADERS] ${err.message}`);
         }
       };
 
       const done = (status, reason) => {
-        logInfo('[DONE]', plugin);
+        logdebug('[DONE]', plugin);
         next(status, reason);
       };
 
-      const handleError = message => {
+      const handleError = (message, errorMessage) => {
         logerror(message, plugin);
-        done(DENYSOFT);
+        done(DENYSOFT, errorMessage);
       };
 
       const handleApiError = err => {
         if (err.response != undefined && err.response.status != undefined) {
-          let errorMessage = 'Unknown response from server';
+          let errorMessage = `HTTP ${err.response.status}`;
 
           if (err.response.status == 401) {
             errorMessage = 'Invalid credentials for ingress';
           }
 
-          if (err.response.status == 400) {
-            errorMessage = 'Error relaying to ingress';
-          }
-
-          handleError(errorMessage);
+          handleError(errorMessage, errorMessage);
         } else {
           handleError(err.message);
         }
@@ -50,7 +40,7 @@
 
       const run = () => {
         try {
-          logInfo('[RUN][STARTED]', plugin);
+          logdebug('[RUN][STARTED]', plugin);
 
           const authString = `actionmailbox:${plugin.cfg.ACTION_MAILBOX_PASSWORD}`;
           const authBase64 = new Buffer.from(authString).toString('base64');
@@ -58,7 +48,7 @@
           const options = {
             headers: {
               'Content-Type': 'messsage/rfc822',
-              'User-Agent': `Frontline relayer v${plugin.cfg.USER_AGENT}`,
+              'User-Agent': plugin.cfg.USER_AGENT,
               'Authorization': `Basic ${authBase64}`
             }
           };
@@ -93,15 +83,19 @@
     this.cfg = this.config.get('queue.rails.json', this.load_config);
 
     if (this.cfg.USER_AGENT == undefined) {
-      this.logwarning('[CONFIG][MISSING][USER_AGENT]');
+      this.logwarning('Missing USER_AGENT in /config/queue.rails.json configuration file');
     }
 
     if (this.cfg.ACTION_MAILBOX_PASSWORD == undefined) {
-      this.logwarning('[CONFIG][MISSING][ACTION_MAILBOX_PASSWORD]');
+      this.logwarning('Missing ACTION_MAILBOX_PASSWORD in /config/queue.rails.json configuration file');
     }
 
     if (this.cfg.ACTION_MAILBOX_URL == undefined) {
-      this.logwarning('[CONFIG][MISSING][ACTION_MAILBOX_URL]');
+      this.logwarning('Missing ACTION_MAILBOX_URL in /config/queue.rails.json configuration file');
+    }
+
+    if (this.cfg.ENVELOPE_HEADER_NAME == undefined) {
+      this.logwarning('Missing ENVELOPE_HEADER_NAME in /config/queue.rails.json configuration file');
     }
   };
 

@@ -34,7 +34,8 @@ describe('load_config', () => {
     const getConfigMock = jest.fn(() => ({
       USER_AGENT: 'USER_AGENT',
       ACTION_MAILBOX_PASSWORD: 'ACTION_MAILBOX_PASSWORD',
-      ACTION_MAILBOX_URL: 'ACTION_MAILBOX_URL'
+      ACTION_MAILBOX_URL: 'ACTION_MAILBOX_URL',
+      ENVELOPE_HEADER_NAME: 'ENVELOPE_HEADER_NAME'
     }));
 
     const logWarningMock = jest.fn(() => {});
@@ -72,10 +73,11 @@ describe('load_config', () => {
 
     expect(getConfigMock.mock.calls[0][0]).toEqual('queue.rails.json');
 
-    expect(logWarningMock.mock.calls[0][0]).toEqual('[CONFIG][MISSING][USER_AGENT]');
-    expect(logWarningMock.mock.calls[1][0]).toEqual('[CONFIG][MISSING][ACTION_MAILBOX_PASSWORD]');
-    expect(logWarningMock.mock.calls[2][0]).toEqual('[CONFIG][MISSING][ACTION_MAILBOX_URL]');
-    expect(logWarningMock.mock.calls[3]).toEqual(undefined);
+    expect(logWarningMock.mock.calls[0][0]).toEqual('Missing USER_AGENT in /config/queue.rails.json configuration file');
+    expect(logWarningMock.mock.calls[1][0]).toEqual('Missing ACTION_MAILBOX_PASSWORD in /config/queue.rails.json configuration file');
+    expect(logWarningMock.mock.calls[2][0]).toEqual('Missing ACTION_MAILBOX_URL in /config/queue.rails.json configuration file');
+    expect(logWarningMock.mock.calls[3][0]).toEqual('Missing ENVELOPE_HEADER_NAME in /config/queue.rails.json configuration file');
+    expect(logWarningMock.mock.calls[4]).toEqual(undefined);
   });
 });
 
@@ -104,7 +106,7 @@ describe('queue_rails', () => {
       host: 'testhost'
     };
 
-    const loginfo = msg => {
+    const logdebug = msg => {
       // console.log(msg);
     };
 
@@ -114,7 +116,7 @@ describe('queue_rails', () => {
 
     const hello = { host: 'hello-host' };
 
-    const connection = { transaction, remote, hello, loginfo, logerror };
+    const connection = { transaction, remote, hello, logdebug, logerror };
 
     const next = statusCode => {
       expect(statusCode).toEqual(OK);
@@ -125,11 +127,12 @@ describe('queue_rails', () => {
         "headers": {
           "Authorization": "Basic YWN0aW9ubWFpbGJveDpBQ1RJT05fTUFJTEJPWF9QQVNTV09SRA==",
           "Content-Type": "messsage/rfc822",
-          "User-Agent": "Frontline relayer vUSER_AGENT"
+          "User-Agent": "USER_AGENT"
         }
       });
       expect(axiosMock.post.mock.calls[1]).toEqual(undefined);
 
+      expect(transaction.add_header.mock.calls[0][0]).toEqual('ENVELOPE_HEADER_NAME');
       expect(transaction.add_header.mock.calls[0][1]).toEqual(
         JSON.stringify({
           mail_from: transaction.mail_from,
@@ -148,7 +151,8 @@ describe('queue_rails', () => {
         this.cfg = {
           USER_AGENT: 'USER_AGENT',
           ACTION_MAILBOX_PASSWORD: 'ACTION_MAILBOX_PASSWORD',
-          ACTION_MAILBOX_URL: 'ACTION_MAILBOX_URL'
+          ACTION_MAILBOX_URL: 'ACTION_MAILBOX_URL',
+          ENVELOPE_HEADER_NAME: 'ENVELOPE_HEADER_NAME'
         };
       };
     };
@@ -183,7 +187,7 @@ describe('queue_rails', () => {
       host: 'testhost'
     };
 
-    const loginfo = msg => {
+    const logdebug = msg => {
       // console.log(msg);
     };
 
@@ -193,7 +197,7 @@ describe('queue_rails', () => {
 
     const hello = { host: 'hello-host' };
 
-    const connection = { transaction, remote, hello, loginfo, logerror };
+    const connection = { transaction, remote, hello, logdebug, logerror };
 
     const next = (statusCode, reason) => {
       expect(statusCode).toEqual(DENYSOFT);
@@ -204,11 +208,12 @@ describe('queue_rails', () => {
         "headers": {
           "Authorization": "Basic YWN0aW9ubWFpbGJveDpBQ1RJT05fTUFJTEJPWF9QQVNTV09SRA==",
           "Content-Type": "messsage/rfc822",
-          "User-Agent": "Frontline relayer vUSER_AGENT"
+          "User-Agent": "USER_AGENT"
         }
       });
       expect(axiosMock.post.mock.calls[1]).toEqual(undefined);
 
+      expect(transaction.add_header.mock.calls[0][0]).toEqual('ENVELOPE_HEADER_NAME');
       expect(transaction.add_header.mock.calls[0][1]).toEqual(
         JSON.stringify({
           mail_from: transaction.mail_from,
@@ -227,7 +232,8 @@ describe('queue_rails', () => {
         this.cfg = {
           USER_AGENT: 'USER_AGENT',
           ACTION_MAILBOX_PASSWORD: 'ACTION_MAILBOX_PASSWORD',
-          ACTION_MAILBOX_URL: 'ACTION_MAILBOX_URL'
+          ACTION_MAILBOX_URL: 'ACTION_MAILBOX_URL',
+          ENVELOPE_HEADER_NAME: 'ENVELOPE_HEADER_NAME'
         };
       };
     };
@@ -262,7 +268,7 @@ describe('queue_rails', () => {
       host: 'testhost'
     };
 
-    const loginfo = msg => {
+    const logdebug = msg => {
       // console.log(msg);
     };
 
@@ -272,7 +278,7 @@ describe('queue_rails', () => {
 
     const hello = { host: 'hello-host' };
 
-    const connection = { transaction, remote, hello, loginfo, logerror };
+    const connection = { transaction, remote, hello, logdebug, logerror };
 
     const next = (statusCode, reason) => {
       expect(statusCode).toEqual(DENYSOFT);
@@ -283,11 +289,12 @@ describe('queue_rails', () => {
         "headers": {
           "Authorization": "Basic YWN0aW9ubWFpbGJveDpBQ1RJT05fTUFJTEJPWF9QQVNTV09SRA==",
           "Content-Type": "messsage/rfc822",
-          "User-Agent": "Frontline relayer vUSER_AGENT"
+          "User-Agent": "USER_AGENT"
         }
       });
       expect(axiosMock.post.mock.calls[1]).toEqual(undefined);
 
+      expect(transaction.add_header.mock.calls[0][0]).toEqual('ENVELOPE_HEADER_NAME');
       expect(transaction.add_header.mock.calls[0][1]).toEqual(
         JSON.stringify({
           mail_from: transaction.mail_from,
@@ -306,7 +313,8 @@ describe('queue_rails', () => {
         this.cfg = {
           USER_AGENT: 'USER_AGENT',
           ACTION_MAILBOX_PASSWORD: 'ACTION_MAILBOX_PASSWORD',
-          ACTION_MAILBOX_URL: 'ACTION_MAILBOX_URL'
+          ACTION_MAILBOX_URL: 'ACTION_MAILBOX_URL',
+          ENVELOPE_HEADER_NAME: 'ENVELOPE_HEADER_NAME'
         };
       };
     };
@@ -341,7 +349,7 @@ describe('queue_rails', () => {
       host: 'testhost'
     };
 
-    const loginfo = msg => {
+    const logdebug = msg => {
       // console.log(msg);
     };
 
@@ -351,7 +359,7 @@ describe('queue_rails', () => {
 
     const hello = { host: 'hello-host' };
 
-    const connection = { transaction, remote, hello, loginfo, logerror };
+    const connection = { transaction, remote, hello, logdebug, logerror };
 
     const next = (statusCode, reason) => {
       expect(statusCode).toEqual(DENYSOFT);
@@ -362,11 +370,12 @@ describe('queue_rails', () => {
         "headers": {
           "Authorization": "Basic YWN0aW9ubWFpbGJveDpBQ1RJT05fTUFJTEJPWF9QQVNTV09SRA==",
           "Content-Type": "messsage/rfc822",
-          "User-Agent": "Frontline relayer vUSER_AGENT"
+          "User-Agent": "USER_AGENT"
         }
       });
       expect(axiosMock.post.mock.calls[1]).toEqual(undefined);
 
+      expect(transaction.add_header.mock.calls[0][0]).toEqual('ENVELOPE_HEADER_NAME');
       expect(transaction.add_header.mock.calls[0][1]).toEqual(
         JSON.stringify({
           mail_from: transaction.mail_from,
@@ -385,7 +394,8 @@ describe('queue_rails', () => {
         this.cfg = {
           USER_AGENT: 'USER_AGENT',
           ACTION_MAILBOX_PASSWORD: 'ACTION_MAILBOX_PASSWORD',
-          ACTION_MAILBOX_URL: 'ACTION_MAILBOX_URL'
+          ACTION_MAILBOX_URL: 'ACTION_MAILBOX_URL',
+          ENVELOPE_HEADER_NAME: 'ENVELOPE_HEADER_NAME'
         };
       };
     };
@@ -420,7 +430,7 @@ describe('queue_rails', () => {
       host: 'testhost'
     };
 
-    const loginfo = msg => {
+    const logdebug = msg => {
       // console.log(msg);
     };
 
@@ -430,7 +440,7 @@ describe('queue_rails', () => {
 
     const hello = { host: 'hello-host' };
 
-    const connection = { transaction, remote, hello, loginfo, logerror };
+    const connection = { transaction, remote, hello, logdebug, logerror };
 
     const next = (statusCode, reason) => {
       expect(statusCode).toEqual(DENYSOFT);
@@ -441,11 +451,12 @@ describe('queue_rails', () => {
         "headers": {
           "Authorization": "Basic YWN0aW9ubWFpbGJveDpBQ1RJT05fTUFJTEJPWF9QQVNTV09SRA==",
           "Content-Type": "messsage/rfc822",
-          "User-Agent": "Frontline relayer vUSER_AGENT"
+          "User-Agent": "USER_AGENT"
         }
       });
       expect(axiosMock.post.mock.calls[1]).toEqual(undefined);
 
+      expect(transaction.add_header.mock.calls[0][0]).toEqual('ENVELOPE_HEADER_NAME');
       expect(transaction.add_header.mock.calls[0][1]).toEqual(
         JSON.stringify({
           mail_from: transaction.mail_from,
@@ -464,7 +475,8 @@ describe('queue_rails', () => {
         this.cfg = {
           USER_AGENT: 'USER_AGENT',
           ACTION_MAILBOX_PASSWORD: 'ACTION_MAILBOX_PASSWORD',
-          ACTION_MAILBOX_URL: 'ACTION_MAILBOX_URL'
+          ACTION_MAILBOX_URL: 'ACTION_MAILBOX_URL',
+          ENVELOPE_HEADER_NAME: 'ENVELOPE_HEADER_NAME'
         };
       };
     };
@@ -499,7 +511,7 @@ describe('queue_rails', () => {
       host: 'testhost'
     };
 
-    const loginfo = msg => {
+    const logdebug = msg => {
       // console.log(msg);
     };
 
@@ -509,7 +521,7 @@ describe('queue_rails', () => {
 
     const hello = { host: 'hello-host' };
 
-    const connection = { transaction, remote, hello, loginfo, logerror };
+    const connection = { transaction, remote, hello, logdebug, logerror };
 
     const next = (statusCode, reason) => {
       expect(statusCode).toEqual(DENYSOFT);
@@ -520,11 +532,12 @@ describe('queue_rails', () => {
         "headers": {
           "Authorization": "Basic YWN0aW9ubWFpbGJveDpBQ1RJT05fTUFJTEJPWF9QQVNTV09SRA==",
           "Content-Type": "messsage/rfc822",
-          "User-Agent": "Frontline relayer vUSER_AGENT"
+          "User-Agent": "USER_AGENT"
         }
       });
       expect(axiosMock.post.mock.calls[1]).toEqual(undefined);
 
+      expect(transaction.add_header.mock.calls[0][0]).toEqual('ENVELOPE_HEADER_NAME');
       expect(transaction.add_header.mock.calls[0][1]).toEqual(
         JSON.stringify({
           mail_from: transaction.mail_from,
@@ -543,7 +556,8 @@ describe('queue_rails', () => {
         this.cfg = {
           USER_AGENT: 'USER_AGENT',
           ACTION_MAILBOX_PASSWORD: 'ACTION_MAILBOX_PASSWORD',
-          ACTION_MAILBOX_URL: 'ACTION_MAILBOX_URL'
+          ACTION_MAILBOX_URL: 'ACTION_MAILBOX_URL',
+          ENVELOPE_HEADER_NAME: 'ENVELOPE_HEADER_NAME'
         };
       };
     };
@@ -578,7 +592,7 @@ describe('queue_rails', () => {
       host: 'testhost'
     };
 
-    const loginfo = msg => {
+    const logdebug = msg => {
       // console.log(msg);
     };
 
@@ -588,7 +602,7 @@ describe('queue_rails', () => {
 
     const hello = { host: 'hello-host' };
 
-    const connection = { transaction, remote, hello, loginfo, logerror };
+    const connection = { transaction, remote, hello, logdebug, logerror };
 
     const next = (statusCode, reason) => {
       expect(statusCode).toEqual(DENYSOFT);
@@ -599,11 +613,12 @@ describe('queue_rails', () => {
         "headers": {
           "Authorization": "Basic YWN0aW9ubWFpbGJveDpBQ1RJT05fTUFJTEJPWF9QQVNTV09SRA==",
           "Content-Type": "messsage/rfc822",
-          "User-Agent": "Frontline relayer vUSER_AGENT"
+          "User-Agent": "USER_AGENT"
         }
       });
       expect(axiosMock.post.mock.calls[1]).toEqual(undefined);
 
+      expect(transaction.add_header.mock.calls[0][0]).toEqual('ENVELOPE_HEADER_NAME');
       expect(transaction.add_header.mock.calls[0][1]).toEqual(
         JSON.stringify({
           mail_from: transaction.mail_from,
@@ -622,7 +637,8 @@ describe('queue_rails', () => {
         this.cfg = {
           USER_AGENT: 'USER_AGENT',
           ACTION_MAILBOX_PASSWORD: 'ACTION_MAILBOX_PASSWORD',
-          ACTION_MAILBOX_URL: 'ACTION_MAILBOX_URL'
+          ACTION_MAILBOX_URL: 'ACTION_MAILBOX_URL',
+          ENVELOPE_HEADER_NAME: 'ENVELOPE_HEADER_NAME'
         };
       };
     };

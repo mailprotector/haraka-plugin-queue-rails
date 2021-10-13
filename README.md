@@ -13,7 +13,8 @@ Add `queue.rails.json` in the config folder with the following settings:
 {
   "ACTION_MAILBOX_PASSWORD": "my_password",
   "ACTION_MAILBOX_URL": "https://my_host.com:8080/email",
-  "USER_AGENT": "awesome-app"
+  "USER_AGENT": "awesome-app",
+  "ENVELOPE_HEADER_NAME": "X-HARAKA-ENVELOPE"
 }
 ```
 
@@ -23,7 +24,7 @@ queue.rails
 ```
 
 ## Details
-The following header `X-${plugin.config.USER_AGENT}` will be added to the email as a JSON string
+The following header from your `USER_AGENT` config will be added to the email as a JSON string
 ```js
 {
   "mail_from": transaction.mail_from,
