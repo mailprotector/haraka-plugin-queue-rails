@@ -45,7 +45,18 @@ test('response OK with a SUCCESS 200 API status code', testComplete => {
 
     expect(axiosMock.post.mock.calls[0][0]).toEqual('ACTION_MAILBOX_URL');
     expect(typeof axiosMock.post.mock.calls[0][1].on).toEqual('function');
+    expect(axiosMock.post.mock.calls[0][2]).toEqual({
+      "headers": {
+        "Authorization": "Basic YWN0aW9ubWFpbGJveDpBQ1RJT05fTUFJTEJPWF9QQVNTV09SRA==",
+        "Content-Type": "messsage/rfc822",
+        "User-Agent": "Frontline relayer vUSER_AGENT"
+      }
+    });
     expect(axiosMock.post.mock.calls[1]).toEqual(undefined);
+
+    expect(transaction.add_header.mock.calls[0][1]).toEqual(
+      "{\"mail_from\":\"from-addr\",\"rcpt_to\":\"to-addr\",\"remote_ip\":\"192.168.0.1\",\"remote_host\":\"testhost\",\"helo\":\"hello-host\"}"
+    );
 
     testComplete();
   };
@@ -107,7 +118,18 @@ test('response DENYSOFT with a RESOLVE > 299 API status code', testComplete => {
 
     expect(axiosMock.post.mock.calls[0][0]).toEqual('ACTION_MAILBOX_URL');
     expect(typeof axiosMock.post.mock.calls[0][1].on).toEqual('function');
+    expect(axiosMock.post.mock.calls[0][2]).toEqual({
+      "headers": {
+        "Authorization": "Basic YWN0aW9ubWFpbGJveDpBQ1RJT05fTUFJTEJPWF9QQVNTV09SRA==",
+        "Content-Type": "messsage/rfc822",
+        "User-Agent": "Frontline relayer vUSER_AGENT"
+      }
+    });
     expect(axiosMock.post.mock.calls[1]).toEqual(undefined);
+
+    expect(transaction.add_header.mock.calls[0][1]).toEqual(
+      "{\"mail_from\":\"from-addr\",\"rcpt_to\":\"to-addr\",\"remote_ip\":\"192.168.0.1\",\"remote_host\":\"testhost\",\"helo\":\"hello-host\"}"
+    );
 
     testComplete();
   };
@@ -169,7 +191,18 @@ test('response DENYSOFT with a RESOLVE 401 API status code', testComplete => {
 
     expect(axiosMock.post.mock.calls[0][0]).toEqual('ACTION_MAILBOX_URL');
     expect(typeof axiosMock.post.mock.calls[0][1].on).toEqual('function');
+    expect(axiosMock.post.mock.calls[0][2]).toEqual({
+      "headers": {
+        "Authorization": "Basic YWN0aW9ubWFpbGJveDpBQ1RJT05fTUFJTEJPWF9QQVNTV09SRA==",
+        "Content-Type": "messsage/rfc822",
+        "User-Agent": "Frontline relayer vUSER_AGENT"
+      }
+    });
     expect(axiosMock.post.mock.calls[1]).toEqual(undefined);
+
+    expect(transaction.add_header.mock.calls[0][1]).toEqual(
+      "{\"mail_from\":\"from-addr\",\"rcpt_to\":\"to-addr\",\"remote_ip\":\"192.168.0.1\",\"remote_host\":\"testhost\",\"helo\":\"hello-host\"}"
+    );
 
     testComplete();
   };
@@ -231,7 +264,18 @@ test('response DENYSOFT with a RESOLVE 400 API status code', testComplete => {
 
     expect(axiosMock.post.mock.calls[0][0]).toEqual('ACTION_MAILBOX_URL');
     expect(typeof axiosMock.post.mock.calls[0][1].on).toEqual('function');
+    expect(axiosMock.post.mock.calls[0][2]).toEqual({
+      "headers": {
+        "Authorization": "Basic YWN0aW9ubWFpbGJveDpBQ1RJT05fTUFJTEJPWF9QQVNTV09SRA==",
+        "Content-Type": "messsage/rfc822",
+        "User-Agent": "Frontline relayer vUSER_AGENT"
+      }
+    });
     expect(axiosMock.post.mock.calls[1]).toEqual(undefined);
+
+    expect(transaction.add_header.mock.calls[0][1]).toEqual(
+      "{\"mail_from\":\"from-addr\",\"rcpt_to\":\"to-addr\",\"remote_ip\":\"192.168.0.1\",\"remote_host\":\"testhost\",\"helo\":\"hello-host\"}"
+    );
 
     testComplete();
   };
@@ -293,7 +337,18 @@ test('response DENYSOFT with a REJECT > 299 API status code', testComplete => {
 
     expect(axiosMock.post.mock.calls[0][0]).toEqual('ACTION_MAILBOX_URL');
     expect(typeof axiosMock.post.mock.calls[0][1].on).toEqual('function');
+    expect(axiosMock.post.mock.calls[0][2]).toEqual({
+      "headers": {
+        "Authorization": "Basic YWN0aW9ubWFpbGJveDpBQ1RJT05fTUFJTEJPWF9QQVNTV09SRA==",
+        "Content-Type": "messsage/rfc822",
+        "User-Agent": "Frontline relayer vUSER_AGENT"
+      }
+    });
     expect(axiosMock.post.mock.calls[1]).toEqual(undefined);
+
+    expect(transaction.add_header.mock.calls[0][1]).toEqual(
+      "{\"mail_from\":\"from-addr\",\"rcpt_to\":\"to-addr\",\"remote_ip\":\"192.168.0.1\",\"remote_host\":\"testhost\",\"helo\":\"hello-host\"}"
+    );
 
     testComplete();
   };
@@ -355,7 +410,18 @@ test('response DENYSOFT with a REJECT 401 API status code', testComplete => {
 
     expect(axiosMock.post.mock.calls[0][0]).toEqual('ACTION_MAILBOX_URL');
     expect(typeof axiosMock.post.mock.calls[0][1].on).toEqual('function');
+    expect(axiosMock.post.mock.calls[0][2]).toEqual({
+      "headers": {
+        "Authorization": "Basic YWN0aW9ubWFpbGJveDpBQ1RJT05fTUFJTEJPWF9QQVNTV09SRA==",
+        "Content-Type": "messsage/rfc822",
+        "User-Agent": "Frontline relayer vUSER_AGENT"
+      }
+    });
     expect(axiosMock.post.mock.calls[1]).toEqual(undefined);
+
+    expect(transaction.add_header.mock.calls[0][1]).toEqual(
+      "{\"mail_from\":\"from-addr\",\"rcpt_to\":\"to-addr\",\"remote_ip\":\"192.168.0.1\",\"remote_host\":\"testhost\",\"helo\":\"hello-host\"}"
+    );
 
     testComplete();
   };
@@ -417,7 +483,18 @@ test('response DENYSOFT with a REJECT 400 API status code', testComplete => {
 
     expect(axiosMock.post.mock.calls[0][0]).toEqual('ACTION_MAILBOX_URL');
     expect(typeof axiosMock.post.mock.calls[0][1].on).toEqual('function');
+    expect(axiosMock.post.mock.calls[0][2]).toEqual({
+      "headers": {
+        "Authorization": "Basic YWN0aW9ubWFpbGJveDpBQ1RJT05fTUFJTEJPWF9QQVNTV09SRA==",
+        "Content-Type": "messsage/rfc822",
+        "User-Agent": "Frontline relayer vUSER_AGENT"
+      }
+    });
     expect(axiosMock.post.mock.calls[1]).toEqual(undefined);
+
+    expect(transaction.add_header.mock.calls[0][1]).toEqual(
+      "{\"mail_from\":\"from-addr\",\"rcpt_to\":\"to-addr\",\"remote_ip\":\"192.168.0.1\",\"remote_host\":\"testhost\",\"helo\":\"hello-host\"}"
+    );
 
     testComplete();
   };
