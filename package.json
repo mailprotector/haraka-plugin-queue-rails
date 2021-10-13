@@ -1,6 +1,6 @@
 {
-  "name": "@mailprotector/haraka-plugin-queue-action-mailbox",
-  "version": "1.0.1",
+  "name": "@mailprotector/haraka-plugin-queue-rails",
+  "version": "1.0.0",
   "description": "A Haraka plugin for relaying email to a Rails application via Action Mailbox.",
   "main": "index.js",
   "scripts": {
