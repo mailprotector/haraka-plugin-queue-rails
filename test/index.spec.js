@@ -106,17 +106,13 @@ describe('queue_rails', () => {
       host: 'testhost'
     };
 
-    const logdebug = msg => {
-      // console.log(msg);
-    };
-
     const logerror = msg => {
       console.log(msg);
     };
 
     const hello = { host: 'hello-host' };
 
-    const connection = { transaction, remote, hello, logdebug, logerror };
+    const connection = { transaction, remote, hello, logerror };
 
     const next = (statusCode, reason) => {
       expect(statusCode).toEqual(OK);
@@ -127,7 +123,7 @@ describe('queue_rails', () => {
       expect(axiosMock.post.mock.calls[0][2]).toEqual({
         "headers": {
           "Authorization": "Basic YWN0aW9ubWFpbGJveDpBQ1RJT05fTUFJTEJPWF9QQVNTV09SRA==",
-          "Content-Type": "messsage/rfc822",
+          "Content-Type": "message/rfc822",
           "User-Agent": "USER_AGENT"
         }
       });
@@ -188,17 +184,13 @@ describe('queue_rails', () => {
       host: 'testhost'
     };
 
-    const logdebug = msg => {
-      // console.log(msg);
-    };
-
     const logerror = msg => {
       // console.log(msg);
     };
 
     const hello = { host: 'hello-host' };
 
-    const connection = { transaction, remote, hello, logdebug, logerror };
+    const connection = { transaction, remote, hello, logerror };
 
     const next = (statusCode, reason) => {
       expect(statusCode).toEqual(DENYSOFT);
@@ -209,7 +201,7 @@ describe('queue_rails', () => {
       expect(axiosMock.post.mock.calls[0][2]).toEqual({
         "headers": {
           "Authorization": "Basic YWN0aW9ubWFpbGJveDpBQ1RJT05fTUFJTEJPWF9QQVNTV09SRA==",
-          "Content-Type": "messsage/rfc822",
+          "Content-Type": "message/rfc822",
           "User-Agent": "USER_AGENT"
         }
       });
@@ -270,17 +262,13 @@ describe('queue_rails', () => {
       host: 'testhost'
     };
 
-    const logdebug = msg => {
-      // console.log(msg);
-    };
-
     const logerror = msg => {
       // console.log(msg);
     };
 
     const hello = { host: 'hello-host' };
 
-    const connection = { transaction, remote, hello, logdebug, logerror };
+    const connection = { transaction, remote, hello, logerror };
 
     const next = (statusCode, reason) => {
       expect(statusCode).toEqual(DENYSOFT);
@@ -291,7 +279,7 @@ describe('queue_rails', () => {
       expect(axiosMock.post.mock.calls[0][2]).toEqual({
         "headers": {
           "Authorization": "Basic YWN0aW9ubWFpbGJveDpBQ1RJT05fTUFJTEJPWF9QQVNTV09SRA==",
-          "Content-Type": "messsage/rfc822",
+          "Content-Type": "message/rfc822",
           "User-Agent": "USER_AGENT"
         }
       });
@@ -352,17 +340,13 @@ describe('queue_rails', () => {
       host: 'testhost'
     };
 
-    const logdebug = msg => {
-      // console.log(msg);
-    };
-
     const logerror = msg => {
       // console.log(msg);
     };
 
     const hello = { host: 'hello-host' };
 
-    const connection = { transaction, remote, hello, logdebug, logerror };
+    const connection = { transaction, remote, hello, logerror };
 
     const next = (statusCode, reason) => {
       expect(statusCode).toEqual(DENYSOFT);
@@ -373,7 +357,7 @@ describe('queue_rails', () => {
       expect(axiosMock.post.mock.calls[0][2]).toEqual({
         "headers": {
           "Authorization": "Basic YWN0aW9ubWFpbGJveDpBQ1RJT05fTUFJTEJPWF9QQVNTV09SRA==",
-          "Content-Type": "messsage/rfc822",
+          "Content-Type": "message/rfc822",
           "User-Agent": "USER_AGENT"
         }
       });
@@ -434,17 +418,13 @@ describe('queue_rails', () => {
       host: 'testhost'
     };
 
-    const logdebug = msg => {
-      // console.log(msg);
-    };
-
     const logerror = msg => {
       // console.log(msg);
     };
 
     const hello = { host: 'hello-host' };
 
-    const connection = { transaction, remote, hello, logdebug, logerror };
+    const connection = { transaction, remote, hello, logerror };
 
     const next = (statusCode, reason) => {
       expect(statusCode).toEqual(DENYSOFT);
@@ -455,7 +435,7 @@ describe('queue_rails', () => {
       expect(axiosMock.post.mock.calls[0][2]).toEqual({
         "headers": {
           "Authorization": "Basic YWN0aW9ubWFpbGJveDpBQ1RJT05fTUFJTEJPWF9QQVNTV09SRA==",
-          "Content-Type": "messsage/rfc822",
+          "Content-Type": "message/rfc822",
           "User-Agent": "USER_AGENT"
         }
       });
@@ -516,17 +496,13 @@ describe('queue_rails', () => {
       host: 'testhost'
     };
 
-    const logdebug = msg => {
-      // console.log(msg);
-    };
-
     const logerror = msg => {
       // console.log(msg);
     };
 
     const hello = { host: 'hello-host' };
 
-    const connection = { transaction, remote, hello, logdebug, logerror };
+    const connection = { transaction, remote, hello, logerror };
 
     const next = (statusCode, reason) => {
       expect(statusCode).toEqual(DENYSOFT);
@@ -537,7 +513,7 @@ describe('queue_rails', () => {
       expect(axiosMock.post.mock.calls[0][2]).toEqual({
         "headers": {
           "Authorization": "Basic YWN0aW9ubWFpbGJveDpBQ1RJT05fTUFJTEJPWF9QQVNTV09SRA==",
-          "Content-Type": "messsage/rfc822",
+          "Content-Type": "message/rfc822",
           "User-Agent": "USER_AGENT"
         }
       });
@@ -598,17 +574,13 @@ describe('queue_rails', () => {
       host: 'testhost'
     };
 
-    const logdebug = msg => {
-      // console.log(msg);
-    };
-
     const logerror = msg => {
       // console.log(msg);
     };
 
     const hello = { host: 'hello-host' };
 
-    const connection = { transaction, remote, hello, logdebug, logerror };
+    const connection = { transaction, remote, hello, logerror };
 
     const next = (statusCode, reason) => {
       expect(statusCode).toEqual(DENYSOFT);
@@ -619,7 +591,7 @@ describe('queue_rails', () => {
       expect(axiosMock.post.mock.calls[0][2]).toEqual({
         "headers": {
           "Authorization": "Basic YWN0aW9ubWFpbGJveDpBQ1RJT05fTUFJTEJPWF9QQVNTV09SRA==",
-          "Content-Type": "messsage/rfc822",
+          "Content-Type": "message/rfc822",
           "User-Agent": "USER_AGENT"
         }
       });

@@ -3,24 +3,22 @@
     return function(next, connection) {
       const plugin = this;
 
-      const { transaction, remote, hello, logdebug, logerror } = connection;
+      const { transaction, remote, hello } = connection;
 
       const addCustomHeaders = customHeader => {
-        logdebug('[ADD_CUSTOM_HEADERS]', plugin);
         try {
           transaction.add_header(plugin.cfg.ENVELOPE_HEADER_NAME, JSON.stringify(customHeader))
         } catch (err) {
-          handleError(`[ADD_CUSTOM_HEADERS] ${err.message}`);
+          handleError(`Adding custom headers ${err.message}`);
         }
       };
 
       const done = (status, reason) => {
-        logdebug('[DONE]', plugin);
         next(status, reason);
       };
 
       const handleError = (message, errorMessage) => {
-        logerror(message, plugin);
+        connection.logerror(message, plugin);
         done(DENYSOFT, errorMessage);
       };
 
@@ -54,14 +52,12 @@
 
       const run = () => {
         try {
-          logdebug('[RUN][STARTED]', plugin);
-
           const authString = `actionmailbox:${plugin.cfg.ACTION_MAILBOX_PASSWORD}`;
           const authBase64 = new Buffer.from(authString).toString('base64');
 
           const options = {
             headers: {
-              'Content-Type': 'messsage/rfc822',
+              'Content-Type': 'message/rfc822',
               'User-Agent': plugin.cfg.USER_AGENT,
               'Authorization': `Basic ${authBase64}`
             }
@@ -75,7 +71,7 @@
             }
           }).catch(err => handleApiError(err));
         } catch (err) {
-          handleError(`[RUN][ERROR] ${err.message}`);
+          handleError(err.message);
         }
       };
 
