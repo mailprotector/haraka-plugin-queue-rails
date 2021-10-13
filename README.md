@@ -22,6 +22,18 @@ Add to config file in config folder
 queue.rails
 ```
 
+## Details
+The following header `X-${plugin.config.USER_AGENT}` will be added to the email as a JSON string
+```js
+{
+  "mail_from": transaction.mail_from,
+  "rcpt_to": transaction.rcpt_to,
+  "remote_ip": remote.ip,
+  "remote_host": remote.host,
+  "helo": hello.host
+}
+```
+
 
 ##
 ![alt text](https://i1.wp.com/mailprotector.com/wp-content/uploads/2020/03/cropped-logo-2x.png)
