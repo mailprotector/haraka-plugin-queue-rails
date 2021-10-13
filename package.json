@@ -4,6 +4,9 @@
   "description": "A Haraka plugin for relaying email to a Rails application via Action Mailbox.",
   "main": "index.js",
   "scripts": {
+    "lint": "npx eslint *.js test/*.js",
+    "lintfix": "npx eslint --fix *.js test/*.js",
+    "versions": "npx dependency-version-checker check",
     "test": "jest ./test --detectOpenHandles"
   },
   "repository": {
@@ -26,5 +29,10 @@
   "homepage": "https://github.com/mailprotector/haraka-plugin-queue-action-mailbox#readme",
   "dependencies": {
     "axios": "^0.23.0"
+  },
+  "devDependencies": {
+    "eslint": "*",
+    "eslint-plugin-haraka": "*",
+    "jest": "*"
   }
 }
