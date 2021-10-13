@@ -55,7 +55,13 @@ test('response OK with a SUCCESS 200 API status code', testComplete => {
     expect(axiosMock.post.mock.calls[1]).toEqual(undefined);
 
     expect(transaction.add_header.mock.calls[0][1]).toEqual(
-      "{\"mail_from\":\"from-addr\",\"rcpt_to\":\"to-addr\",\"remote_ip\":\"192.168.0.1\",\"remote_host\":\"testhost\",\"helo\":\"hello-host\"}"
+      JSON.stringify({
+        mail_from: transaction.mail_from,
+        rcpt_to: transaction.rcpt_to,
+        remote_ip: remote.ip,
+        remote_host: remote.host,
+        helo: hello.host
+      })
     );
 
     testComplete();
@@ -128,7 +134,13 @@ test('response DENYSOFT with a RESOLVE > 299 API status code', testComplete => {
     expect(axiosMock.post.mock.calls[1]).toEqual(undefined);
 
     expect(transaction.add_header.mock.calls[0][1]).toEqual(
-      "{\"mail_from\":\"from-addr\",\"rcpt_to\":\"to-addr\",\"remote_ip\":\"192.168.0.1\",\"remote_host\":\"testhost\",\"helo\":\"hello-host\"}"
+      JSON.stringify({
+        mail_from: transaction.mail_from,
+        rcpt_to: transaction.rcpt_to,
+        remote_ip: remote.ip,
+        remote_host: remote.host,
+        helo: hello.host
+      })
     );
 
     testComplete();
@@ -201,7 +213,13 @@ test('response DENYSOFT with a RESOLVE 401 API status code', testComplete => {
     expect(axiosMock.post.mock.calls[1]).toEqual(undefined);
 
     expect(transaction.add_header.mock.calls[0][1]).toEqual(
-      "{\"mail_from\":\"from-addr\",\"rcpt_to\":\"to-addr\",\"remote_ip\":\"192.168.0.1\",\"remote_host\":\"testhost\",\"helo\":\"hello-host\"}"
+      JSON.stringify({
+        mail_from: transaction.mail_from,
+        rcpt_to: transaction.rcpt_to,
+        remote_ip: remote.ip,
+        remote_host: remote.host,
+        helo: hello.host
+      })
     );
 
     testComplete();
@@ -274,7 +292,13 @@ test('response DENYSOFT with a RESOLVE 400 API status code', testComplete => {
     expect(axiosMock.post.mock.calls[1]).toEqual(undefined);
 
     expect(transaction.add_header.mock.calls[0][1]).toEqual(
-      "{\"mail_from\":\"from-addr\",\"rcpt_to\":\"to-addr\",\"remote_ip\":\"192.168.0.1\",\"remote_host\":\"testhost\",\"helo\":\"hello-host\"}"
+      JSON.stringify({
+        mail_from: transaction.mail_from,
+        rcpt_to: transaction.rcpt_to,
+        remote_ip: remote.ip,
+        remote_host: remote.host,
+        helo: hello.host
+      })
     );
 
     testComplete();
@@ -347,7 +371,13 @@ test('response DENYSOFT with a REJECT > 299 API status code', testComplete => {
     expect(axiosMock.post.mock.calls[1]).toEqual(undefined);
 
     expect(transaction.add_header.mock.calls[0][1]).toEqual(
-      "{\"mail_from\":\"from-addr\",\"rcpt_to\":\"to-addr\",\"remote_ip\":\"192.168.0.1\",\"remote_host\":\"testhost\",\"helo\":\"hello-host\"}"
+      JSON.stringify({
+        mail_from: transaction.mail_from,
+        rcpt_to: transaction.rcpt_to,
+        remote_ip: remote.ip,
+        remote_host: remote.host,
+        helo: hello.host
+      })
     );
 
     testComplete();
@@ -420,7 +450,13 @@ test('response DENYSOFT with a REJECT 401 API status code', testComplete => {
     expect(axiosMock.post.mock.calls[1]).toEqual(undefined);
 
     expect(transaction.add_header.mock.calls[0][1]).toEqual(
-      "{\"mail_from\":\"from-addr\",\"rcpt_to\":\"to-addr\",\"remote_ip\":\"192.168.0.1\",\"remote_host\":\"testhost\",\"helo\":\"hello-host\"}"
+      JSON.stringify({
+        mail_from: transaction.mail_from,
+        rcpt_to: transaction.rcpt_to,
+        remote_ip: remote.ip,
+        remote_host: remote.host,
+        helo: hello.host
+      })
     );
 
     testComplete();
@@ -493,7 +529,13 @@ test('response DENYSOFT with a REJECT 400 API status code', testComplete => {
     expect(axiosMock.post.mock.calls[1]).toEqual(undefined);
 
     expect(transaction.add_header.mock.calls[0][1]).toEqual(
-      "{\"mail_from\":\"from-addr\",\"rcpt_to\":\"to-addr\",\"remote_ip\":\"192.168.0.1\",\"remote_host\":\"testhost\",\"helo\":\"hello-host\"}"
+      JSON.stringify({
+        mail_from: transaction.mail_from,
+        rcpt_to: transaction.rcpt_to,
+        remote_ip: remote.ip,
+        remote_host: remote.host,
+        helo: hello.host
+      })
     );
 
     testComplete();
