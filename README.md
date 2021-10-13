@@ -24,7 +24,7 @@ queue.rails
 ```
 
 ## Details
-The following header from your `USER_AGENT` config will be added to the email as a JSON string
+The following header from your `ENVELOPE_HEADER_NAME` config will be added to the email as a JSON string
 ```js
 {
   "mail_from": transaction.mail_from,
