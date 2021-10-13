@@ -3,16 +3,16 @@
     return function(next, connection) {
       const startTime = Date.now();
 
-      const logDebug = msg => {
-        logdebug(msg + ` ${Date.now() - startTime}/ms`, plugin);
+      const logInfo = msg => {
+        loginfo(msg + ` ${Date.now() - startTime}/ms`, plugin);
       }
 
       const plugin = this;
 
-      const { transaction, remote, hello, logdebug, logerror } = connection;
+      const { transaction, remote, hello, loginfo, logerror } = connection;
 
       const addCustomHeaders = customHeader => {
-        logDebug('[ADD_CUSTOM_HEADERS]', plugin);
+        logInfo('[ADD_CUSTOM_HEADERS]', plugin);
         try {
           transaction.add_header(`X-${plugin.cfg.USER_AGENT}`, JSON.stringify(customHeader))
         } catch (err) {
@@ -21,7 +21,7 @@
       };
 
       const done = (status, reason) => {
-        logDebug('[DONE]', plugin);
+        logInfo('[DONE]', plugin);
         next(status, reason);
       };
 
@@ -50,7 +50,7 @@
 
       const run = () => {
         try {
-          logDebug('[RUN][STARTED]', plugin);
+          logInfo('[RUN][STARTED]', plugin);
 
           const authString = `actionmailbox:${plugin.cfg.ACTION_MAILBOX_PASSWORD}`;
           const authBase64 = new Buffer.from(authString).toString('base64');
@@ -91,6 +91,18 @@
 
   exports.load_config = function() {
     this.cfg = this.config.get('queue.rails.json', this.load_config);
+
+    if (this.cfg.USER_AGENT == undefined) {
+      this.logwarning('[CONFIG][MISSING][USER_AGENT]');
+    }
+
+    if (this.cfg.ACTION_MAILBOX_PASSWORD == undefined) {
+      this.logwarning('[CONFIG][MISSING][ACTION_MAILBOX_PASSWORD]');
+    }
+
+    if (this.cfg.ACTION_MAILBOX_URL == undefined) {
+      this.logwarning('[CONFIG][MISSING][ACTION_MAILBOX_URL]');
+    }
   };
 
   exports.register = function() {

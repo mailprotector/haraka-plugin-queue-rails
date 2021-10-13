@@ -28,7 +28,7 @@ test('response OK with a SUCCESS 200 API status code', testComplete => {
     host: 'testhost'
   };
 
-  const logdebug = msg => {
+  const loginfo = msg => {
     // console.log(msg);
   };
 
@@ -38,7 +38,7 @@ test('response OK with a SUCCESS 200 API status code', testComplete => {
 
   const hello = { host: 'hello-host' };
 
-  const connection = { transaction, remote, hello, logdebug, logerror };
+  const connection = { transaction, remote, hello, loginfo, logerror };
 
   const next = statusCode => {
     expect(statusCode).toEqual(OK);
@@ -90,7 +90,7 @@ test('response DENYSOFT with a RESOLVE > 299 API status code', testComplete => {
     host: 'testhost'
   };
 
-  const logdebug = msg => {
+  const loginfo = msg => {
     // console.log(msg);
   };
 
@@ -100,7 +100,7 @@ test('response DENYSOFT with a RESOLVE > 299 API status code', testComplete => {
 
   const hello = { host: 'hello-host' };
 
-  const connection = { transaction, remote, hello, logdebug, logerror };
+  const connection = { transaction, remote, hello, loginfo, logerror };
 
   const next = (statusCode, reason) => {
     expect(statusCode).toEqual(DENYSOFT);
@@ -152,7 +152,7 @@ test('response DENYSOFT with a RESOLVE 401 API status code', testComplete => {
     host: 'testhost'
   };
 
-  const logdebug = msg => {
+  const loginfo = msg => {
     // console.log(msg);
   };
 
@@ -162,7 +162,7 @@ test('response DENYSOFT with a RESOLVE 401 API status code', testComplete => {
 
   const hello = { host: 'hello-host' };
 
-  const connection = { transaction, remote, hello, logdebug, logerror };
+  const connection = { transaction, remote, hello, loginfo, logerror };
 
   const next = (statusCode, reason) => {
     expect(statusCode).toEqual(DENYSOFT);
@@ -214,7 +214,7 @@ test('response DENYSOFT with a RESOLVE 400 API status code', testComplete => {
     host: 'testhost'
   };
 
-  const logdebug = msg => {
+  const loginfo = msg => {
     // console.log(msg);
   };
 
@@ -224,7 +224,7 @@ test('response DENYSOFT with a RESOLVE 400 API status code', testComplete => {
 
   const hello = { host: 'hello-host' };
 
-  const connection = { transaction, remote, hello, logdebug, logerror };
+  const connection = { transaction, remote, hello, loginfo, logerror };
 
   const next = (statusCode, reason) => {
     expect(statusCode).toEqual(DENYSOFT);
@@ -276,7 +276,7 @@ test('response DENYSOFT with a REJECT > 299 API status code', testComplete => {
     host: 'testhost'
   };
 
-  const logdebug = msg => {
+  const loginfo = msg => {
     // console.log(msg);
   };
 
@@ -286,7 +286,7 @@ test('response DENYSOFT with a REJECT > 299 API status code', testComplete => {
 
   const hello = { host: 'hello-host' };
 
-  const connection = { transaction, remote, hello, logdebug, logerror };
+  const connection = { transaction, remote, hello, loginfo, logerror };
 
   const next = (statusCode, reason) => {
     expect(statusCode).toEqual(DENYSOFT);
@@ -338,7 +338,7 @@ test('response DENYSOFT with a REJECT 401 API status code', testComplete => {
     host: 'testhost'
   };
 
-  const logdebug = msg => {
+  const loginfo = msg => {
     // console.log(msg);
   };
 
@@ -348,7 +348,7 @@ test('response DENYSOFT with a REJECT 401 API status code', testComplete => {
 
   const hello = { host: 'hello-host' };
 
-  const connection = { transaction, remote, hello, logdebug, logerror };
+  const connection = { transaction, remote, hello, loginfo, logerror };
 
   const next = (statusCode, reason) => {
     expect(statusCode).toEqual(DENYSOFT);
@@ -400,7 +400,7 @@ test('response DENYSOFT with a REJECT 400 API status code', testComplete => {
     host: 'testhost'
   };
 
-  const logdebug = msg => {
+  const loginfo = msg => {
     // console.log(msg);
   };
 
@@ -410,7 +410,7 @@ test('response DENYSOFT with a REJECT 400 API status code', testComplete => {
 
   const hello = { host: 'hello-host' };
 
-  const connection = { transaction, remote, hello, logdebug, logerror };
+  const connection = { transaction, remote, hello, loginfo, logerror };
 
   const next = (statusCode, reason) => {
     expect(statusCode).toEqual(DENYSOFT);

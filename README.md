@@ -12,8 +12,8 @@ To use make sure to add a queue.rails.json config file in the config folder with
 ```json
 {
 "ACTION_MAILBOX_PASSWORD": "my_password",
-"ACTION_MAILBOX_URL": "https://my_host.com/email:8080",
-"USER_AGENT": "your_custom_agent"
+"ACTION_MAILBOX_URL": "https://my_host.com:8080/email",
+"USER_AGENT": "awesome-app"
 }
 ```
 
