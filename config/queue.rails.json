@@ -1,0 +1,6 @@
+{
+  "ACTION_MAILBOX_PASSWORD": "my_password",
+  "ACTION_MAILBOX_URL": "https://my_host.com:8080/email",
+  "USER_AGENT": "awesome-app",
+  "ENVELOPE_HEADER_NAME": "X-HARAKA-ENVELOPE"
+}
