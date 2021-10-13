@@ -25,6 +25,11 @@
       };
 
       const handleApiError = err => {
+        if (err.code == 'ECONNREFUSED') {
+          handleError(err.message, `Connection refused`);
+          return;
+        }
+
         if (err.response != undefined && err.response.status != undefined) {
           let errorMessage = `HTTP ${err.response.status}`;
 
