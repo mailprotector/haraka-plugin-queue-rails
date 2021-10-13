@@ -26,7 +26,12 @@
 
       const handleApiError = err => {
         if (err.code == 'ECONNREFUSED') {
-          handleError(err.message, `Connection refused`);
+          handleError(err.message, 'Connection refused');
+          return;
+        }
+
+        if (err.code == 'ENOTFOUND') {
+          handleError(err.message, 'Connection not found');
           return;
         }
 
