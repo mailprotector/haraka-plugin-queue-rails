@@ -118,8 +118,9 @@ describe('queue_rails', () => {
 
     const connection = { transaction, remote, hello, logdebug, logerror };
 
-    const next = statusCode => {
+    const next = (statusCode, reason) => {
       expect(statusCode).toEqual(OK);
+      expect(reason).toEqual(undefined);
 
       expect(axiosMock.post.mock.calls[0][0]).toEqual('ACTION_MAILBOX_URL');
       expect(typeof axiosMock.post.mock.calls[0][1].on).toEqual('function');
@@ -201,6 +202,7 @@ describe('queue_rails', () => {
 
     const next = (statusCode, reason) => {
       expect(statusCode).toEqual(DENYSOFT);
+      expect(reason).toEqual('HTTP 300');
 
       expect(axiosMock.post.mock.calls[0][0]).toEqual('ACTION_MAILBOX_URL');
       expect(typeof axiosMock.post.mock.calls[0][1].on).toEqual('function');
@@ -282,6 +284,7 @@ describe('queue_rails', () => {
 
     const next = (statusCode, reason) => {
       expect(statusCode).toEqual(DENYSOFT);
+      expect(reason).toEqual('Invalid credentials for ingress');
 
       expect(axiosMock.post.mock.calls[0][0]).toEqual('ACTION_MAILBOX_URL');
       expect(typeof axiosMock.post.mock.calls[0][1].on).toEqual('function');
@@ -363,6 +366,7 @@ describe('queue_rails', () => {
 
     const next = (statusCode, reason) => {
       expect(statusCode).toEqual(DENYSOFT);
+      expect(reason).toEqual('HTTP 400');
 
       expect(axiosMock.post.mock.calls[0][0]).toEqual('ACTION_MAILBOX_URL');
       expect(typeof axiosMock.post.mock.calls[0][1].on).toEqual('function');
@@ -444,6 +448,7 @@ describe('queue_rails', () => {
 
     const next = (statusCode, reason) => {
       expect(statusCode).toEqual(DENYSOFT);
+      expect(reason).toEqual('HTTP 300');
 
       expect(axiosMock.post.mock.calls[0][0]).toEqual('ACTION_MAILBOX_URL');
       expect(typeof axiosMock.post.mock.calls[0][1].on).toEqual('function');
@@ -525,6 +530,7 @@ describe('queue_rails', () => {
 
     const next = (statusCode, reason) => {
       expect(statusCode).toEqual(DENYSOFT);
+      expect(reason).toEqual('Invalid credentials for ingress');
 
       expect(axiosMock.post.mock.calls[0][0]).toEqual('ACTION_MAILBOX_URL');
       expect(typeof axiosMock.post.mock.calls[0][1].on).toEqual('function');
@@ -606,6 +612,7 @@ describe('queue_rails', () => {
 
     const next = (statusCode, reason) => {
       expect(statusCode).toEqual(DENYSOFT);
+      expect(reason).toEqual('HTTP 400');
 
       expect(axiosMock.post.mock.calls[0][0]).toEqual('ACTION_MAILBOX_URL');
       expect(typeof axiosMock.post.mock.calls[0][1].on).toEqual('function');
