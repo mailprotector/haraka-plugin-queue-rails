@@ -20,7 +20,7 @@ Add `queue.rails.json` in the config folder with the following settings:
 
 Add to config file in config folder
 ```text
-queue.rails
+@mailprotector/haraka-plugin-queue-rails
 ```
 
 ## Details

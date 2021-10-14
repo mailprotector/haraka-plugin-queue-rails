@@ -1,6 +1,6 @@
 {
   "name": "@mailprotector/haraka-plugin-queue-rails",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A Haraka plugin for relaying email to a Rails application via Action Mailbox.",
   "main": "index.js",
   "scripts": {
@@ -8,10 +8,6 @@
     "lintfix": "npx eslint --fix *.js test/*.js",
     "versions": "npx dependency-version-checker check",
     "test": "jest ./test --detectOpenHandles"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mailprotector/haraka-plugin-queue-action-mailbox.git"
   },
   "keywords": [
     "Haraka",
