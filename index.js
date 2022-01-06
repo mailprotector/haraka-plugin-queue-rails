@@ -95,10 +95,11 @@
     const retryLimit = 2;
 
     const attemptLoadConfig = () => {
+      retryCount += 1;
       if (retryCount >= retryLimit) {
         return;
       }
-      
+
       try {
         this.cfg = this.config.get('queue.rails.json', this.load_config);
   
