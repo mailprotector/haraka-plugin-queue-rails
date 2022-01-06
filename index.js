@@ -90,23 +90,39 @@
   exports.queue_rails_test = buildPluginFunction;
 
   exports.load_config = function() {
-    this.cfg = this.config.get('queue.rails.json', this.load_config);
+    let cfg = this.config;
+    const retryCount = 0;
+    const retryLimit = 2;
 
-    if (this.cfg.USER_AGENT == undefined) {
-      this.logwarning('Missing USER_AGENT in /config/queue.rails.json configuration file');
-    }
+    const attemptLoadConfig = () => {
+      if (retryCount >= retryLimit) {
+        return;
+      }
+      
+      try {
+        this.cfg = this.config.get('queue.rails.json', this.load_config);
+  
+        if (this.cfg.USER_AGENT == undefined) {
+          this.logwarning('Missing USER_AGENT in /config/queue.rails.json configuration file');
+        }
+  
+        if (this.cfg.ACTION_MAILBOX_PASSWORD == undefined) {
+          this.logwarning('Missing ACTION_MAILBOX_PASSWORD in /config/queue.rails.json configuration file');
+        }
+  
+        if (this.cfg.ACTION_MAILBOX_URL == undefined) {
+          this.logwarning('Missing ACTION_MAILBOX_URL in /config/queue.rails.json configuration file');
+        }
+  
+        if (this.cfg.ENVELOPE_HEADER_NAME == undefined) {
+          this.logwarning('Missing ENVELOPE_HEADER_NAME in /config/queue.rails.json configuration file');
+        }
+      } catch (err) {
+        setTimeout(attemptLoadConfig, 5000);
+      }
+    };
 
-    if (this.cfg.ACTION_MAILBOX_PASSWORD == undefined) {
-      this.logwarning('Missing ACTION_MAILBOX_PASSWORD in /config/queue.rails.json configuration file');
-    }
-
-    if (this.cfg.ACTION_MAILBOX_URL == undefined) {
-      this.logwarning('Missing ACTION_MAILBOX_URL in /config/queue.rails.json configuration file');
-    }
-
-    if (this.cfg.ENVELOPE_HEADER_NAME == undefined) {
-      this.logwarning('Missing ENVELOPE_HEADER_NAME in /config/queue.rails.json configuration file');
-    }
+    attemptLoadConfig();
   };
 
   exports.register = function() {
