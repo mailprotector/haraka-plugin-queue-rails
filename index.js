@@ -77,7 +77,7 @@
 
       addCustomHeaders({
         mail_from: transaction.mail_from,
-        rcpt_to: transaction.rcpt_to.map(r => r.original).join(','),
+        rcpt_to: transaction.rcpt_to.map(r => r.original),
         remote_ip: remote.ip,
         remote_host: remote.host,
         helo: hello.host
