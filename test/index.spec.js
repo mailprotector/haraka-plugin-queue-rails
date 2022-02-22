@@ -97,8 +97,8 @@ describe('queue_rails', () => {
       uuid: '123-abc',
       add_header: jest.fn(() => {}),
       message_stream: readStream,
-      mail_from: 'from-addr',
-      rcpt_to: [{original: 'to-addr'}, {original: 'to-addr2'}]
+      mail_from: { address: ()=>('from-addr') },
+      rcpt_to: [{address: () => ('to-addr')}, {address: () => ('to-addr2')}]
     };
 
     const remote = {
@@ -132,11 +132,12 @@ describe('queue_rails', () => {
       expect(transaction.add_header.mock.calls[0][0]).toEqual('ENVELOPE_HEADER_NAME');
       expect(transaction.add_header.mock.calls[0][1]).toEqual(
         JSON.stringify({
-          mail_from: transaction.mail_from,
-          rcpt_to: 'to-addr,to-addr2',
+          mail_from: transaction.mail_from.address(),
+          rcpt_to: ['to-addr','to-addr2'],
           remote_ip: remote.ip,
           remote_host: remote.host,
-          helo: hello.host
+          helo: hello.host,
+          uuid: transaction.uuid
         })
       );
 
@@ -175,8 +176,8 @@ describe('queue_rails', () => {
       uuid: '123-abc',
       add_header: jest.fn(() => {}),
       message_stream: readStream,
-      mail_from: 'from-addr',
-      rcpt_to: [{original: 'to-addr'}, {original: 'to-addr2'}]
+      mail_from: { address: () => ('from-addr') },
+      rcpt_to: [{ address: () => ('to-addr') }, { address: () => ('to-addr2') }]
     };
 
     const remote = {
@@ -210,11 +211,12 @@ describe('queue_rails', () => {
       expect(transaction.add_header.mock.calls[0][0]).toEqual('ENVELOPE_HEADER_NAME');
       expect(transaction.add_header.mock.calls[0][1]).toEqual(
         JSON.stringify({
-          mail_from: transaction.mail_from,
-          rcpt_to: 'to-addr,to-addr2',
+          mail_from: transaction.mail_from.address(),
+          rcpt_to: ['to-addr', 'to-addr2'],
           remote_ip: remote.ip,
           remote_host: remote.host,
-          helo: hello.host
+          helo: hello.host,
+          uuid: transaction.uuid
         })
       );
 
@@ -253,8 +255,8 @@ describe('queue_rails', () => {
       uuid: '123-abc',
       add_header: jest.fn(() => {}),
       message_stream: readStream,
-      mail_from: 'from-addr',
-      rcpt_to: [{original: 'to-addr'}, {original: 'to-addr2'}]
+      mail_from: { address: () => ('from-addr') },
+      rcpt_to: [{ address: () => ('to-addr') }, { address: () => ('to-addr2') }]
     };
 
     const remote = {
@@ -288,11 +290,12 @@ describe('queue_rails', () => {
       expect(transaction.add_header.mock.calls[0][0]).toEqual('ENVELOPE_HEADER_NAME');
       expect(transaction.add_header.mock.calls[0][1]).toEqual(
         JSON.stringify({
-          mail_from: transaction.mail_from,
-          rcpt_to: 'to-addr,to-addr2',
+          mail_from: transaction.mail_from.address(),
+          rcpt_to: ['to-addr','to-addr2'],
           remote_ip: remote.ip,
           remote_host: remote.host,
-          helo: hello.host
+          helo: hello.host,
+          uuid: transaction.uuid
         })
       );
 
@@ -331,8 +334,8 @@ describe('queue_rails', () => {
       uuid: '123-abc',
       add_header: jest.fn(() => {}),
       message_stream: readStream,
-      mail_from: 'from-addr',
-      rcpt_to: [{original: 'to-addr'}, {original: 'to-addr2'}]
+      mail_from: { address: () => ('from-addr') },
+      rcpt_to: [{ address: () => ('to-addr') }, { address: () => ('to-addr2') }]
     };
 
     const remote = {
@@ -366,11 +369,12 @@ describe('queue_rails', () => {
       expect(transaction.add_header.mock.calls[0][0]).toEqual('ENVELOPE_HEADER_NAME');
       expect(transaction.add_header.mock.calls[0][1]).toEqual(
         JSON.stringify({
-          mail_from: transaction.mail_from,
-          rcpt_to: 'to-addr,to-addr2',
+          mail_from: transaction.mail_from.address(),
+          rcpt_to: ['to-addr','to-addr2'],
           remote_ip: remote.ip,
           remote_host: remote.host,
-          helo: hello.host
+          helo: hello.host,
+          uuid: transaction.uuid
         })
       );
 
@@ -409,8 +413,8 @@ describe('queue_rails', () => {
       uuid: '123-abc',
       add_header: jest.fn(() => {}),
       message_stream: readStream,
-      mail_from: 'from-addr',
-      rcpt_to: [{original: 'to-addr'}, {original: 'to-addr2'}]
+      mail_from: { address: () => ('from-addr') },
+      rcpt_to: [{ address: () => ('to-addr') }, { address: () => ('to-addr2') }]
     };
 
     const remote = {
@@ -444,11 +448,12 @@ describe('queue_rails', () => {
       expect(transaction.add_header.mock.calls[0][0]).toEqual('ENVELOPE_HEADER_NAME');
       expect(transaction.add_header.mock.calls[0][1]).toEqual(
         JSON.stringify({
-          mail_from: transaction.mail_from,
-          rcpt_to: 'to-addr,to-addr2',
+          mail_from: transaction.mail_from.address(),
+          rcpt_to: ['to-addr','to-addr2'],
           remote_ip: remote.ip,
           remote_host: remote.host,
-          helo: hello.host
+          helo: hello.host,
+          uuid: transaction.uuid
         })
       );
 
@@ -487,8 +492,8 @@ describe('queue_rails', () => {
       uuid: '123-abc',
       add_header: jest.fn(() => {}),
       message_stream: readStream,
-      mail_from: 'from-addr',
-      rcpt_to: [{original: 'to-addr'}, {original: 'to-addr2'}]
+      mail_from: { address: () => ('from-addr') },
+      rcpt_to: [{ address: () => ('to-addr') }, { address: () => ('to-addr2') }]
     };
 
     const remote = {
@@ -522,11 +527,12 @@ describe('queue_rails', () => {
       expect(transaction.add_header.mock.calls[0][0]).toEqual('ENVELOPE_HEADER_NAME');
       expect(transaction.add_header.mock.calls[0][1]).toEqual(
         JSON.stringify({
-          mail_from: transaction.mail_from,
-          rcpt_to: 'to-addr,to-addr2',
+          mail_from: transaction.mail_from.address(),
+          rcpt_to: ['to-addr','to-addr2'],
           remote_ip: remote.ip,
           remote_host: remote.host,
-          helo: hello.host
+          helo: hello.host,
+          uuid: transaction.uuid
         })
       );
 
@@ -565,8 +571,8 @@ describe('queue_rails', () => {
       uuid: '123-abc',
       add_header: jest.fn(() => {}),
       message_stream: readStream,
-      mail_from: 'from-addr',
-      rcpt_to: [{original: 'to-addr'}, {original: 'to-addr2'}]
+      mail_from: { address: () => ('from-addr') },
+      rcpt_to: [{ address: () => ('to-addr') }, { address: () => ('to-addr2') }]
     };
 
     const remote = {
@@ -600,11 +606,12 @@ describe('queue_rails', () => {
       expect(transaction.add_header.mock.calls[0][0]).toEqual('ENVELOPE_HEADER_NAME');
       expect(transaction.add_header.mock.calls[0][1]).toEqual(
         JSON.stringify({
-          mail_from: transaction.mail_from,
-          rcpt_to: 'to-addr,to-addr2',
+          mail_from: transaction.mail_from.address(),
+          rcpt_to: ['to-addr','to-addr2'],
           remote_ip: remote.ip,
           remote_host: remote.host,
-          helo: hello.host
+          helo: hello.host,
+          uuid: transaction.uuid
         })
       );
 
